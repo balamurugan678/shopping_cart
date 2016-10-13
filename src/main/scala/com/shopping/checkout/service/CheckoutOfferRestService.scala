@@ -3,6 +3,9 @@ package com.shopping.checkout.service
 import akka.http.scaladsl.server.Directives
 import com.typesafe.config.ConfigFactory
 
+/**
+  * Service class to find the offer price of a Cart
+  */
 class CheckoutOfferRestService extends Directives {
 
   val shoppingOfferRoutes = pathPrefix("offer") {

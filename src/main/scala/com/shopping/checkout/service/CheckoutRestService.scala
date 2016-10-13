@@ -5,7 +5,9 @@ import com.typesafe.config.ConfigFactory
 
 import scala.annotation.tailrec
 
-
+/**
+  * Service class to find the total price of a Cart
+  */
 class CheckoutRestService extends Directives {
 
   val checkoutRoutes = pathPrefix("shopping") {

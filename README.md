@@ -6,7 +6,8 @@
 
 * The application provides API for checkout in a shop. 
 * The API has been written in Scala using Akka.HTTP library. 
-* The API mainly deals with Apples and Oranges in the cart and neglects the other items.
+* The API mainly deals with Apples and Oranges in the cart and neglects the other items. 
+* Apples cost 60p and oranges cost 25p.
 
 ## How to run the application
 
@@ -14,29 +15,51 @@ Use either one of the following options:
 
 1. run the command `sbt run`
 2. create a *fat jar* with the command `sbt assembly` and then `java -jar target/scala-2.11/shopping_cart-assembly-1.0.0.jar`
+3. The default hostname and port has been specified in the application.conf as `localhost` and `8080` respectively. There is an provision to change these as well. Use `-Dhttp.host=something_else` as an environment variable when we the jar. 
+4. The same approach goes for overriding the default port as well.
 
+## To hit the checkout API
 
-## To hit the API
-
-* Once the application is up(either via jar or in an IDE), hit the api using the Checkout Shopping Cart URL `http://localhost:8080/shopping`
+* Once the application is up(either via jar or in an IDE), hit the api using the Checkout Shopping Cart URL `http://localhost:8080/shopping`. The endpoint is a POST operation. 
 
 * The sample request to the shopping cart endpoint:
 
 ```
-
   
-    {
-    	"items":[ "Apple", "Orange", "Orange", "Apple", "Apple", "Orange", "Apple" ] 
-    }
-  
-
+{
+    "items":[ "Apple", "Apple", "Orange", "Apple"] 
+}
+ 
 ```
 
 Sample response from the shopping cart endpoint:
 
 ```
 {
-  "total": "£3.15"
+  "total": "£2.05"
+}
+```
+
+
+## To hit the offer API
+
+* Once the application is up(either via jar or in an IDE), hit the api using the Checkout Shopping Cart URL `http://localhost:8080/offer`. The endpoint is a POST operation. 
+
+* The sample request to the shopping cart offer endpoint:
+
+```
+  
+{
+    "items":[ "Apple", "Apple", "Orange", "Apple"] 
+}
+  
+```
+
+Sample response from the shopping cart offer endpoint:
+
+```
+{
+  "total": "£1.45"
 }
 ```
 

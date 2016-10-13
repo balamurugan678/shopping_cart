@@ -6,13 +6,13 @@ import akka.util.ByteString
 import com.shopping.checkout.controller.ShoppingRestController
 import org.scalatest.{Matchers, WordSpec}
 
-class ShoppingRestServiceTest extends WordSpec with Matchers with ScalatestRouteTest with ShoppingRestController {
+class ShoppingOfferRestServiceTest extends WordSpec with Matchers with ScalatestRouteTest with ShoppingRestController {
 
   import com.shopping.checkout.domain.ShoppingCartProtocol._
 
   "Shopping Cart API" should {
 
-    "Posting to /shopping should add the price of the items" in {
+    "Posting to /offer should add the price of the items in an offer price" in {
 
       val jsonRequest = ByteString(
         s"""
@@ -23,18 +23,18 @@ class ShoppingRestServiceTest extends WordSpec with Matchers with ScalatestRoute
 
       val postRequest = HttpRequest(
         HttpMethods.POST,
-        uri = "/shopping",
+        uri = "/offer",
         entity = HttpEntity(MediaTypes.`application/json`, jsonRequest))
 
 
       postRequest ~> shoppingCartRoutes ~> check {
         handled.shouldBe(true)
         status.isSuccess() shouldEqual true
-        responseAs[Price].total shouldEqual("£2.05")
+        responseAs[Price].total shouldEqual("£1.45")
       }
     }
 
-    "Posting to /shopping should add the price of the items with 10 Apples" in {
+    "Posting to /offer should add the offer price of the items with 10 Apples" in {
 
       val jsonRequest = ByteString(
         s"""
@@ -45,18 +45,18 @@ class ShoppingRestServiceTest extends WordSpec with Matchers with ScalatestRoute
 
       val postRequest = HttpRequest(
         HttpMethods.POST,
-        uri = "/shopping",
+        uri = "/offer",
         entity = HttpEntity(MediaTypes.`application/json`, jsonRequest))
 
 
       postRequest ~> shoppingCartRoutes ~> check {
         handled.shouldBe(true)
         status.isSuccess() shouldEqual true
-        responseAs[Price].total shouldEqual("£6.0")
+        responseAs[Price].total shouldEqual("£3.00")
       }
     }
 
-    "Posting to /shopping should add the price of the items with 10 Oranges" in {
+    "Posting to /offer should add the offer price of the items with 10 Oranges" in {
 
       val jsonRequest = ByteString(
         s"""
@@ -67,19 +67,19 @@ class ShoppingRestServiceTest extends WordSpec with Matchers with ScalatestRoute
 
       val postRequest = HttpRequest(
         HttpMethods.POST,
-        uri = "/shopping",
+        uri = "/offer",
         entity = HttpEntity(MediaTypes.`application/json`, jsonRequest))
 
 
       postRequest ~> shoppingCartRoutes ~> check {
         handled.shouldBe(true)
         status.isSuccess() shouldEqual true
-        responseAs[Price].total shouldEqual("£2.50")
+        responseAs[Price].total shouldEqual("£1.75")
       }
     }
 
 
-    "Posting to /shopping should add the price of the Apples and Oranges only and not for others" in {
+    "Posting to /offer should add the offer price of the Apples and Oranges only and not for others" in {
 
       val jsonRequest = ByteString(
         s"""
@@ -90,14 +90,14 @@ class ShoppingRestServiceTest extends WordSpec with Matchers with ScalatestRoute
 
       val postRequest = HttpRequest(
         HttpMethods.POST,
-        uri = "/shopping",
+        uri = "/offer",
         entity = HttpEntity(MediaTypes.`application/json`, jsonRequest))
 
 
       postRequest ~> shoppingCartRoutes ~> check {
         handled.shouldBe(true)
         status.isSuccess() shouldEqual true
-        responseAs[Price].total shouldEqual("£1.95")
+        responseAs[Price].total shouldEqual("£1.10")
       }
     }
 

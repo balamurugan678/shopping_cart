@@ -4,7 +4,7 @@ import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.server._
 import akka.stream.ActorMaterializer
-import com.shopping.checkout.service.ShoppingRestController
+import com.shopping.checkout.controller.ShoppingRestController
 import com.typesafe.config.ConfigFactory
 import com.typesafe.scalalogging.LazyLogging
 

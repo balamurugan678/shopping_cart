@@ -1,23 +1,14 @@
 package com.shopping.checkout.service
 
-import akka.actor.ActorSystem
 import akka.http.scaladsl.server.Directives
-import akka.stream.ActorMaterializer
 import com.typesafe.config.ConfigFactory
 
 import scala.annotation.tailrec
 
-
-trait ShoppingRestController extends Directives {
-
-  implicit val system: ActorSystem
-  implicit val materializer: ActorMaterializer
-
-  val shoppingCartRoutes = new ShoppingRestService().route
-
-}
-
-class ShoppingRestService extends Directives {
+/**
+  * Created by Bala.
+  */
+class CheckoutRestService extends Directives{
 
   val route = pathPrefix("shopping") {
     shoppingGetRoute
@@ -53,6 +44,3 @@ class ShoppingRestService extends Directives {
   }
 
 }
-
-
-

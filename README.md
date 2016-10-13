@@ -18,6 +18,22 @@ Use either one of the following options:
 3. The default hostname and port has been specified in the application.conf as `localhost` and `8080` respectively. There is an provision to change these as well. Use `-Dhttp.host=something_else` as an environment variable when we the jar. 
 4. The same approach goes for overriding the default port as well.
 
+###  Docs
+
+* Swagger Docs to expose the API contracts. 
+ 
+* The Swagger Json can be found in:
+```
+<shopping cart checkout server>/api-docs/swagger.json
+```
+
+* The Swagger UI can be found in:
+```
+<shopping cart checkout server>/swagger-ui.html
+```
+
+Default would be http://localhost:8080/swagger-ui.html
+
 ## To hit the checkout API
 
 * Once the application is up(either via jar or in an IDE), hit the api using the Checkout Shopping Cart URL `http://localhost:8080/shopping`. The endpoint is a POST operation. Cart - a list of strings is the the Entity that needs to be passed. 

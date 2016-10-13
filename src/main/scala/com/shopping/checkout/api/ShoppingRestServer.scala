@@ -5,6 +5,7 @@ import akka.http.scaladsl.Http
 import akka.http.scaladsl.server._
 import akka.stream.ActorMaterializer
 import com.shopping.checkout.controller.ShoppingRestController
+import com.shopping.checkout.service.SwaggerDocService
 import com.typesafe.config.ConfigFactory
 import com.typesafe.scalalogging.LazyLogging
 
@@ -20,16 +21,23 @@ class ShoppingRestServer(implicit val system: ActorSystem,
 
 }
 
-object ShoppingRestServer extends App {
+object ShoppingRestServer extends App with Directives {
 
   implicit val actorSystem = ActorSystem("shopping-cart-rest-server")
   implicit val materializer = ActorMaterializer()
 
-  val shoppingCartRoutes = new ShoppingRestServer().shoppingCartRoutes
+  val swaggerAssets =
+    path("swagger-ui.html") {
+      getFromResource("swagger-ui/index.html")
+    } ~
+      getFromResourceDirectory("swagger-ui")
+
 
   val config = ConfigFactory.load()
   val host = config.getString("http.host")
   val port = config.getInt("http.port")
+
+  val shoppingCartRoutes = new ShoppingRestServer().shoppingCartRoutes ~ new SwaggerDocService(host, port, actorSystem).routes ~ swaggerAssets
 
   val server = new ShoppingRestServer()
   server.startServer(shoppingCartRoutes, host, port)

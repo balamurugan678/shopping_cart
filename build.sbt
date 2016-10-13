@@ -19,7 +19,8 @@ libraryDependencies ++= {
     "org.json4s" %% "json4s-ext" % Json4sVersion,
     "de.heikoseeberger" %% "akka-http-json4s" % "1.4.2",
     "com.typesafe.scala-logging" %% "scala-logging" % "3.5.0",
-    "ch.qos.logback" %  "logback-classic" % "1.1.7"
+    "ch.qos.logback" %  "logback-classic" % "1.1.7",
+    "com.github.swagger-akka-http" %% "swagger-akka-http" % "0.7.2"
   )
 
 }

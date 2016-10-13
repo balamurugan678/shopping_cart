@@ -1,11 +1,16 @@
 package com.shopping.checkout.service
 
+import javax.ws.rs.Path
+
 import akka.http.scaladsl.server.Directives
 import com.typesafe.config.ConfigFactory
+import io.swagger.annotations._
 
 /**
   * Service class to find the offer price of a Cart
   */
+@Path("/offer")
+@Api(value = "/offer", description = "Operations about offer",  produces = "application/json")
 class CheckoutOfferRestService extends Directives {
 
   val shoppingOfferRoutes = pathPrefix("offer") {
@@ -18,6 +23,15 @@ class CheckoutOfferRestService extends Directives {
   val priceApple = config.getDouble("price.apple")
   val priceOrange = config.getDouble("price.orange")
 
+  @ApiOperation(value = "Checkout with Simple Offer", nickname = "offerCheckout", httpMethod = "POST", consumes = "application/json", produces = "application/json")
+  @ApiImplicitParams(Array(
+    new ApiImplicitParam(name = "Cart", dataType = "com.shopping.checkout.domain.ShoppingCartProtocol$Cart", paramType = "body", required = true)
+  ))
+  @ApiResponses(Array(
+    new ApiResponse(code = 400, message = "Bad Request"),
+    new ApiResponse(code = 201, message = "Entity Created"),
+    new ApiResponse(code = 500, message = "Internal Server Error")
+  ))
   def shoppingOfferPostRoute =
     post {
       entity(as[Cart]) {

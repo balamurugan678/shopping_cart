@@ -20,21 +20,18 @@ class ShoppingRestServer(implicit val system: ActorSystem,
 
 }
 
-object ShoppingRestServer {
+object ShoppingRestServer extends App {
 
-  def main(args: Array[String]) {
+  implicit val actorSystem = ActorSystem("shopping-cart-rest-server")
+  implicit val materializer = ActorMaterializer()
 
-    implicit val actorSystem = ActorSystem("shopping-cart-rest-server")
-    implicit val materializer = ActorMaterializer()
+  val shoppingCartRoutes = new ShoppingRestServer().shoppingCartRoutes
 
-    val shoppingCartRoutes = new ShoppingRestServer().shoppingCartRoutes /* ~ new SwaggerDocService("localhost", 8080, actorSystem).routes*/
+  val config = ConfigFactory.load()
+  val host = config.getString("http.host")
+  val port = config.getInt("http.port")
 
-    val config = ConfigFactory.load()
-    val host = config.getString("http.host")
-    val port = config.getInt("http.port")
-
-    val server = new ShoppingRestServer()
-    server.startServer(shoppingCartRoutes, host, port)
-  }
+  val server = new ShoppingRestServer()
+  server.startServer(shoppingCartRoutes, host, port)
 
 }

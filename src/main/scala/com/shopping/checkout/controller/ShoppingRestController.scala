@@ -11,6 +11,6 @@ trait ShoppingRestController extends Directives {
   implicit val system: ActorSystem
   implicit val materializer: ActorMaterializer
 
-  val shoppingCartRoutes = new CheckoutRestService().route ~ new CheckoutOfferRestService().shoppingOfferGetRoute
+  val shoppingCartRoutes = new CheckoutRestService().checkoutRoutes ~ new CheckoutOfferRestService().shoppingOfferRoutes
 
 }

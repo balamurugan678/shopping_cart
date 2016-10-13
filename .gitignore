@@ -11,3 +11,4 @@ src/test/resources/
 src/test/scala-2.11/
 target/
 /logs/
+/.idea/

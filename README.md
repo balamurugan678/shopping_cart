@@ -20,7 +20,7 @@ Use either one of the following options:
 
 ## To hit the checkout API
 
-* Once the application is up(either via jar or in an IDE), hit the api using the Checkout Shopping Cart URL `http://localhost:8080/shopping`. The endpoint is a POST operation. 
+* Once the application is up(either via jar or in an IDE), hit the api using the Checkout Shopping Cart URL `http://localhost:8080/shopping`. The endpoint is a POST operation. Cart - a list of strings is the the Entity that needs to be passed. 
 
 * The sample request to the shopping cart endpoint:
 
@@ -43,7 +43,7 @@ Sample response from the shopping cart endpoint:
 
 ## To hit the offer API
 
-* Once the application is up(either via jar or in an IDE), hit the api using the Checkout Shopping Cart URL `http://localhost:8080/offer`. The endpoint is a POST operation. 
+* Once the application is up(either via jar or in an IDE), hit the api using the Checkout Shopping Cart URL `http://localhost:8080/offer`. The endpoint is a POST operation. Cart - a list of strings is the the Entity that needs to be passed.
 
 * The sample request to the shopping cart offer endpoint:
 

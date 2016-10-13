@@ -3,13 +3,10 @@ package com.shopping.checkout.service
 import akka.http.scaladsl.server.Directives
 import com.typesafe.config.ConfigFactory
 
-/**
-  * Created by Bala.
-  */
-class CheckoutOfferRestService extends Directives{
+class CheckoutOfferRestService extends Directives {
 
-  val shoppingOfferRoute = pathPrefix("offer") {
-    shoppingOfferGetRoute
+  val shoppingOfferRoutes = pathPrefix("offer") {
+    shoppingOfferPostRoute
   }
 
   import com.shopping.checkout.domain.ShoppingCartProtocol._
@@ -18,7 +15,7 @@ class CheckoutOfferRestService extends Directives{
   val priceApple = config.getDouble("price.apple")
   val priceOrange = config.getDouble("price.orange")
 
-  def shoppingOfferGetRoute =
+  def shoppingOfferPostRoute =
     post {
       entity(as[Cart]) {
         cart => complete {

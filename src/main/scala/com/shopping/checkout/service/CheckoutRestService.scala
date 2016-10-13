@@ -5,13 +5,11 @@ import com.typesafe.config.ConfigFactory
 
 import scala.annotation.tailrec
 
-/**
-  * Created by Bala.
-  */
-class CheckoutRestService extends Directives{
 
-  val route = pathPrefix("shopping") {
-    shoppingGetRoute
+class CheckoutRestService extends Directives {
+
+  val checkoutRoutes = pathPrefix("shopping") {
+    shoppingCheckoutPostRoute
   }
 
   import com.shopping.checkout.domain.ShoppingCartProtocol._
@@ -20,7 +18,7 @@ class CheckoutRestService extends Directives{
   val priceApple = config.getDouble("price.apple")
   val priceOrange = config.getDouble("price.orange")
 
-  def shoppingGetRoute =
+  def shoppingCheckoutPostRoute =
     post {
       entity(as[Cart]) {
         cart => complete {

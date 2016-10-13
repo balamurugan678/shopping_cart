@@ -30,7 +30,7 @@ class ShoppingOfferRestServiceTest extends WordSpec with Matchers with Scalatest
       postRequest ~> shoppingCartRoutes ~> check {
         handled.shouldBe(true)
         status.isSuccess() shouldEqual true
-        responseAs[Price].total shouldEqual("£1.45")
+        responseAs[Price].total shouldEqual ("£1.45")
       }
     }
 
@@ -52,7 +52,7 @@ class ShoppingOfferRestServiceTest extends WordSpec with Matchers with Scalatest
       postRequest ~> shoppingCartRoutes ~> check {
         handled.shouldBe(true)
         status.isSuccess() shouldEqual true
-        responseAs[Price].total shouldEqual("£3.00")
+        responseAs[Price].total shouldEqual ("£3.00")
       }
     }
 
@@ -74,7 +74,7 @@ class ShoppingOfferRestServiceTest extends WordSpec with Matchers with Scalatest
       postRequest ~> shoppingCartRoutes ~> check {
         handled.shouldBe(true)
         status.isSuccess() shouldEqual true
-        responseAs[Price].total shouldEqual("£1.75")
+        responseAs[Price].total shouldEqual ("£1.75")
       }
     }
 
@@ -97,7 +97,7 @@ class ShoppingOfferRestServiceTest extends WordSpec with Matchers with Scalatest
       postRequest ~> shoppingCartRoutes ~> check {
         handled.shouldBe(true)
         status.isSuccess() shouldEqual true
-        responseAs[Price].total shouldEqual("£1.10")
+        responseAs[Price].total shouldEqual ("£1.10")
       }
     }
 
